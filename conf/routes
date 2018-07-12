@@ -70,3 +70,9 @@ POST        /api/search/exportDelivery             controllers.search.exportDeli
 POST        /api/maintenance/companies             controllers.maintenance.getAllCompanies
 POST        /api/maintenance/module/matchfiles     controllers.maintenance.getSingleModuleAllFiles
 POST        /api/maintenance/matchfile/replace     controllers.maintenance.replaceMatchFile
+
+# MAX DASHBOARD
+POST        /api/dashboard/saleData                controllers.dashboard.getSaleData
+POST        /api/dashboard/keyWord                 controllers.dashboard.getKeyWord
+POST        /api/dashboard/overView                controllers.dashboard.getOverView
+POST        /api/dashboard/contribution            controllers.dashboard.getContribution
