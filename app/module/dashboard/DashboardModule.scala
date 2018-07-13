@@ -16,7 +16,7 @@ object DashboardModule extends ModuleTrait {
 
     def dispatchMsg(msg: MessageDefines)(pr: Option[Map[String, JsValue]])
                    (implicit cm: CommonModules): (Option[Map[String, JsValue]], Option[JsValue]) = msg match {
-        //TODO:Use role to verify.
+
         case msg_getSaleData(data) => dashboard.saleData(MergeStepResult(data, pr))
         case msg_getKeyWord(data) => dashboard.keyWord(MergeStepResult(data, pr))
         case msg_getOverView(data) => dashboard.overView(MergeStepResult(data, pr))
