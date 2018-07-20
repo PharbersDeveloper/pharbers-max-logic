@@ -53,4 +53,156 @@ class dashboard @Inject()(as_inject: ActorSystem, dbt: dbInstanceManager, att: A
             :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
     })
 
+    def getNationSaleShare = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getNationSaleShare"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getNationSaleShare(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getNationMarketTrend = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getNationMarketTrend"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getNationMarketTrend(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getNationMostWord = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getNationMostWord"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getNationMostWord(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getNationProductShare = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getNationProductShare"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getNationProductShare(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getNationProductRank = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getNationProductRank"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getNationProductRank(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getNationProductTable = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getNationProductTable"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getNationProductTable(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceAll = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceAll"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceAll(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceProvinceName = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceProvinceName"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceProvinceName(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceLineOverview = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceLineOverview"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceLineOverview(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceTableOverview = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceTableOverview"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceTableOverview(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceMarketPart = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceMarketPart"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceMarketPart(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceProvLevelRank = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceProvLevelRank"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceProvLevelRank(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceProvMarketSale = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceProvMarketSale"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceProvMarketSale(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceProductTrend = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceProductTrend"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceProductTrend(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceProductCard = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceProductCard"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceProductCard(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceProductShare = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceProductShare"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceProductShare(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceProdRankChange = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceProdRankChange"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceProdRankChange(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceProdSaleOverview = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceProdSaleOverview"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceProdSaleOverview(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
+    def getProvinceProdTrendAnalysis = Action(request => requestArgsQuery().requestArgs(request) { jv =>
+        MessageRoutes(msg_log(toJson(Map("method" -> toJson("getProvinceProdTrendAnalysis"))), jv)
+            :: msg_queryUser(jv)
+            :: msg_expendCompanyInfo(jv)
+            :: msg_getProvinceProdTrendAnalysis(jv)
+            :: msg_CommonResultMessage() :: Nil, None)(CommonModules(Some(Map("db" -> dbt, "att" -> att, "cp" -> cp))))
+    })
+
 }

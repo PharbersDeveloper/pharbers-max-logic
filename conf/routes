@@ -76,3 +76,24 @@ POST        /api/dashboard/saleData                controllers.dashboard.getSale
 POST        /api/dashboard/keyWord                 controllers.dashboard.getKeyWord
 POST        /api/dashboard/overView                controllers.dashboard.getOverView
 POST        /api/dashboard/contribution            controllers.dashboard.getContribution
+# MAX DASHBOARD NATION
+POST        /api/dashboard/nation/saleShare        controllers.dashboard.getNationSaleShare
+POST        /api/dashboard/nation/marketTrend      controllers.dashboard.getNationMarketTrend
+POST        /api/dashboard/nation/mostWord         controllers.dashboard.getNationMostWord
+POST        /api/dashboard/nation/productShare     controllers.dashboard.getNationProductShare
+POST        /api/dashboard/nation/productRank      controllers.dashboard.getNationProductRank
+POST        /api/dashboard/nation/productTable     controllers.dashboard.getNationProductTable
+# MAX DASHBOARD PROVINCE
+POST        /api/dashboard/province/all                 controllers.dashboard.getProvinceAll
+POST        /api/dashboard/province/provinceName        controllers.dashboard.getProvinceProvinceName
+POST        /api/dashboard/province/lineOverview        controllers.dashboard.getProvinceLineOverview
+POST        /api/dashboard/province/tableOverview       controllers.dashboard.getProvinceTableOverview
+POST        /api/dashboard/province/marketPart          controllers.dashboard.getProvinceMarketPart
+POST        /api/dashboard/province/provLevelRank       controllers.dashboard.getProvinceProvLevelRank
+POST        /api/dashboard/province/provMarketSale      controllers.dashboard.getProvinceProvMarketSale
+POST        /api/dashboard/province/productTrend        controllers.dashboard.getProvinceProductTrend
+POST        /api/dashboard/province/productCard         controllers.dashboard.getProvinceProductCard
+POST        /api/dashboard/province/productShare        controllers.dashboard.getProvinceProductShare
+POST        /api/dashboard/province/prodRankChange      controllers.dashboard.getProvinceProdRankChange
+POST        /api/dashboard/province/prodSaleOverview    controllers.dashboard.getProvinceProdSaleOverview
+POST        /api/dashboard/province/prodTrendAnalysis   controllers.dashboard.getProvinceProdTrendAnalysis
