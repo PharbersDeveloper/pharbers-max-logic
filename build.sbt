@@ -1,65 +1,78 @@
-import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.PlayScala
 import scala.language.experimental.macros
+import play.routes.compiler.InjectedRoutesGenerator
 
+val paradiseVersion = "2.1.0"
 def common = Seq(
-	scalaVersion := "2.11.8",
-	version := "1.1",
-	organization := "com.pharbers"
+    scalaVersion := "2.11.8",
+    crossScalaVersions := Seq("2.11.8", "2.12.6"),
+    version := "2.0",
+    organization := "com.pharbers"
 )
 
 lazy val root = (project in file(".")).
-	enablePlugins(PlayScala).
-	settings(common: _*).
-	settings(
-		name := "pharbers-client",
-		fork in run := true,
-		javaOptions += "-Xmx2G"
-	)
+    enablePlugins(PlayScala).
+    disablePlugins(PlayFilters).
+    settings(common: _*).
+    settings(
+        name := "pharbers_max_client",
+        fork in run := true,
+        javaOptions += "-Xmx2G"
+    )
 
 routesGenerator := InjectedRoutesGenerator
 
+resolvers += Resolver.sonatypeRepo("releases")
+resolvers += Resolver.sonatypeRepo("snapshots")
+addCompilerPlugin("org.scalamacros" % "paradise" % paradiseVersion cross CrossVersion.full)
 resolvers += Resolver.mavenLocal
 
 libraryDependencies ++= Seq(
-	jdbc,
-	cache,
-	ws,
-	"commons-httpclient" % "commons-httpclient" % "3.1",
-	"org.mongodb" % "casbah_2.11" % "3.1.1",
-	"com.easemob" % "rest-java-sdk" % "1.0.1",
+    guice,
 
-	"com.pharbers" % "pharbers-module" % "0.1",
-	"com.pharbers" % "pharbers-mongodb" % "0.1",
-	"com.pharbers" % "pharbers-errorcode" % "0.1",
-	"com.pharbers" % "pharbers-third" % "0.1",
-	"com.pharbers" % "pharbers-security" % "0.1",
-	"com.pharbers" % "pharbers-redis" % "0.1",
-	"com.pharbers" % "pharbers-pattern" % "0.1",
-	"com.pharbers" % "pharbers-paction" % "0.1",
-	"com.pharbers" % "pharbers-max" % "0.1" exclude("com.fasterxml.jackson.core", "jackson-databind"),
-	"com.pharbers" % "pharbers-spark" % "0.1" exclude("com.fasterxml.jackson.core", "jackson-databind"),
+    //    基础依赖
+    "org.scala-lang"    % "scala-reflect"       % "2.11.8",
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4",
+    "org.typelevel"     %% "macro-compat"       % "1.1.1",
+    "org.scala-lang"    % "scala-compiler"      % scalaVersion.value % "provided",
 
-	"org.apache.commons" % "commons-email" % "1.4",
-	"net.debasishg" % "redisclient_2.11" % "3.4",
-	"org.apache.kafka" % "kafka_2.11" % "1.1.0" exclude("com.fasterxml.jackson.core", "jackson-databind"),
-	"org.apache.kafka" % "kafka-streams" % "1.1.0" exclude("com.fasterxml.jackson.core", "jackson-databind"),
-	"org.apache.avro" % "avro" % "1.7.6",
-	"log4j" % "log4j" % "1.2.17",
-	"commons-io" % "commons-io" % "2.4",
-	"org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
-    "org.specs2" % "specs2_2.11" % "3.7" % "test",
+    //    json依赖
+    "org.mongodb"       % "casbah_2.11"         % "3.1.1",
+    "io.circe"          %% "circe-core"         % "0.9.3",
+    "io.circe"          %% "circe-generic"      % "0.9.3",
+    "io.circe"          %% "circe-parser"       % "0.9.3",
+    "com.dripower"      % "play-circe_2.11"     % "2609.1",
+    "io.spray"          % "spray-httpx_2.11"    % "1.3.3",
 
-	"amplab" % "spark-indexedrdd" % "0.4.0", // kafka可回调后删除
-	"org.apache.spark" % "spark-core_2.11" % "2.0.0", // kafka可回调后删除
-	"org.apache.spark" % "spark-sql_2.11" % "2.0.0", // kafka可回调后删除
-	"org.mongodb.spark" % "mongo-spark-connector_2.11" % "2.0.0", // kafka可回调后删除
-	"com.fasterxml.jackson.core" % "jackson-core" % "2.6.0",// kafka可回调后删除
-	"com.fasterxml.jackson.core" % "jackson-databind" % "2.6.0" // kafka可回调后删除
+    // redis 依赖
+    "net.debasishg"     % "redisclient_2.11"    % "3.4",
+
+    // pharbers 依赖
+    "com.pharbers"      % "base_module"         % "1.0",
+    "com.pharbers"      % "errorcode"           % "1.0",
+    "com.pharbers"      % "jsonapi"             % "1.0",
+    "com.pharbers"      % "mongo_drive"         % "1.0",
+    "com.pharbers"      % "security"            % "1.0",
+    "com.pharbers"      % "macros"              % "1.0",
+    "com.pharbers"      % "third"               % "1.0",
+    "com.pharbers"      % "client_pattern"      % "1.0",
+    "com.pharbers"      % "models"              % "1.0",
+    "com.pharbers"      % "redis"               % "1.0",
+
+    "com.pharbers" % "pharbers-module" % "0.1",
+    "com.pharbers" % "pharbers-mongodb" % "0.1",
+    "com.pharbers" % "pharbers-errorcode" % "0.1",
+    "com.pharbers" % "pharbers-third" % "0.1",
+    "com.pharbers" % "pharbers-security" % "0.1",
+    "com.pharbers" % "pharbers-redis" % "0.1",
+    "com.pharbers" % "pharbers-pattern" % "0.1",
+    "com.pharbers" % "pharbers-paction" % "0.1",
+    "com.pharbers" % "pharbers-max" % "0.1" exclude("com.fasterxml.jackson.core", "jackson-databind"),
+    "com.pharbers" % "pharbers-spark" % "0.1" exclude("com.fasterxml.jackson.core", "jackson-databind"),
+
+
+    //    其他依赖(日志, 测试)
+    "log4j"             % "log4j"               % "1.2.17",
+    "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test,
+    "org.specs2"        % "specs2_2.11"         % "3.7" % Test
 )
-
-
-
-
-
-

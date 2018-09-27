@@ -1,99 +1,20 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
+# JsonAPI Router
+POST        /api/v1/:pkg/:step                     controllers.PhJsonApiController.routes(pkg: String, step: Int)
+POST        /api/v1/:pkg1/:pkg2/:step              controllers.PhJsonApiController.routes2(pkg1: String, pkg2: String, step: Int)
 
-# Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file                          controllers.Assets.versioned(path="/public", file: Asset)
-GET         /api/files/:name                       controllers.fop.FopController.downloadFile(name)
-GET         /                                      controllers.IndexController.index(path = "index.html")
-GET         /*path                                 controllers.IndexController.index(path)
+## MAX Search Flow
+#POST        /api/search/market/all                 controllers.search.market
+#POST        /api/search/history                    controllers.search.history
+#POST        /api/search/check/simple/select        controllers.search.simpleCheckSelect
+#POST        /api/search/check/simple               controllers.search.simpleCheck
+#POST        /api/search/check/result/select        controllers.search.simpleCheckSelect
+#POST        /api/search/check/result               controllers.search.resultCheck
+#POST        /api/search/getExportType              controllers.search.getExportType
+#POST        /api/search/exportData                 controllers.search.exportData
+#POST        /api/search/exportDelivery             controllers.search.exportDelivery
+#
+## MAX Maintenance Center
+#POST        /api/maintenance/companies             controllers.maintenance.getAllCompanies
+#POST        /api/maintenance/module/matchfiles     controllers.maintenance.getSingleModuleAllFiles
+#POST        /api/maintenance/matchfile/replace     controllers.maintenance.replaceMatchFile
 
-# 用户录入
-POST        /api/user/push                         controllers.users.pushUser
-POST        /api/user/pop                          controllers.users.popUser
-POST        /api/user/query                        controllers.users.queryUser
-POST        /api/user/query/multi                  controllers.users.queryUserMulti
-# User query with company info
-POST        /api/user/detail                       controllers.users.userDetail
-
-# 公司信息录入
-POST        /api/company/push                      controllers.companies.pushCompany
-POST        /api/company/pop                       controllers.companies.popCompany
-POST        /api/company/query                     controllers.companies.queryCompany
-POST        /api/company/query/multi               controllers.companies.queryCompanyMulti
-# Company query with user info
-POST        /api/company/users                     controllers.companies.companyUsers
-
-# 权限信息录入
-POST        /api/role/push                         controllers.roles.pushRole
-POST        /api/role/pop                          controllers.roles.popRole
-POST        /api/role/query                        controllers.roles.queryRole
-POST        /api/role/query/multi                  controllers.roles.queryRoleMulti
-# role query with user info
-POST        /api/role/users                        controllers.roles.roleUsers
-# role user manager
-POST        /api/role/pushUser                     controllers.roles.pushUser
-POST        /api/role/popUser                      controllers.roles.popUser
-
-# User Behavior
-POST        /api/user/login                        controllers.users.userLogin
-POST        /api/user/jobs                         controllers.users.userJobs
-POST        /api/user/roles                        controllers.users.userRoles
-POST        /api/user/isMaintenanceUser            controllers.users.isMaintenanceUser
-
-# Job信息录入
-POST        /api/job/push                          controllers.jobs.pushJob
-POST        /api/job/pop                           controllers.jobs.popJob
-POST        /api/job/query                         controllers.jobs.queryJob
-POST        /api/job/query/multi                   controllers.jobs.queryJobMulti
-# Job Bind User
-POST        /api/job/detail                        controllers.jobs.jobDetail
-
-# MAX Calcul Flow
-POST        /api/file/upload                       controllers.fop.FopController.uploadFile
-POST        /api/max/ymCalc                        controllers.max.ymCalc
-POST        /api/max/panel                         controllers.max.panel
-POST        /api/max/calc                          controllers.max.calc
-POST        /api/max/kill                          controllers.max.kill
-
-# MAX Search Flow
-POST        /api/search/market/all                 controllers.search.market
-POST        /api/search/history                    controllers.search.history
-POST        /api/search/check/simple/select        controllers.search.simpleCheckSelect
-POST        /api/search/check/simple               controllers.search.simpleCheck
-POST        /api/search/check/result/select        controllers.search.simpleCheckSelect
-POST        /api/search/check/result               controllers.search.resultCheck
-POST        /api/search/getExportType              controllers.search.getExportType
-POST        /api/search/exportData                 controllers.search.exportData
-POST        /api/search/exportDelivery             controllers.search.exportDelivery
-
-# MAX Maintenance Center
-POST        /api/maintenance/companies             controllers.maintenance.getAllCompanies
-POST        /api/maintenance/module/matchfiles     controllers.maintenance.getSingleModuleAllFiles
-POST        /api/maintenance/matchfile/replace     controllers.maintenance.replaceMatchFile
-
-# MAX DASHBOARD
-POST        /api/dashboard/saleData                controllers.dashboard.getSaleData
-POST        /api/dashboard/keyWord                 controllers.dashboard.getKeyWord
-POST        /api/dashboard/overView                controllers.dashboard.getOverView
-POST        /api/dashboard/contribution            controllers.dashboard.getContribution
-# MAX DASHBOARD NATION
-POST        /api/dashboard/nation/saleShare        controllers.dashboard.getNationSaleShare
-POST        /api/dashboard/nation/marketTrend      controllers.dashboard.getNationMarketTrend
-POST        /api/dashboard/nation/mostWord         controllers.dashboard.getNationMostWord
-POST        /api/dashboard/nation/productShare     controllers.dashboard.getNationProductShare
-POST        /api/dashboard/nation/productRank      controllers.dashboard.getNationProductRank
-POST        /api/dashboard/nation/productTable     controllers.dashboard.getNationProductTable
-# MAX DASHBOARD PROVINCE
-POST        /api/dashboard/province/all                 controllers.dashboard.getProvinceAll
-POST        /api/dashboard/province/provinceName        controllers.dashboard.getProvinceProvinceName
-POST        /api/dashboard/province/lineOverview        controllers.dashboard.getProvinceLineOverview
-POST        /api/dashboard/province/tableOverview       controllers.dashboard.getProvinceTableOverview
-POST        /api/dashboard/province/marketPart          controllers.dashboard.getProvinceMarketPart
-POST        /api/dashboard/province/provLevelRank       controllers.dashboard.getProvinceProvLevelRank
-POST        /api/dashboard/province/provMarketSale      controllers.dashboard.getProvinceProvMarketSale
-POST        /api/dashboard/province/productTrend        controllers.dashboard.getProvinceProductTrend
-POST        /api/dashboard/province/productCard         controllers.dashboard.getProvinceProductCard
-POST        /api/dashboard/province/productShare        controllers.dashboard.getProvinceProductShare
-POST        /api/dashboard/province/prodRankChange      controllers.dashboard.getProvinceProdRankChange
-POST        /api/dashboard/province/prodSaleOverview    controllers.dashboard.getProvinceProdSaleOverview
-POST        /api/dashboard/province/prodTrendAnalysis   controllers.dashboard.getProvinceProdTrendAnalysis
