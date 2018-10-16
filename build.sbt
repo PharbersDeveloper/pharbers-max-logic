@@ -6,7 +6,7 @@ val paradiseVersion = "2.1.0"
 def common = Seq(
     scalaVersion := "2.11.8",
     crossScalaVersions := Seq("2.11.8", "2.12.6"),
-    version := "2.0",
+    version := "1.0",
     organization := "com.pharbers"
 )
 
@@ -21,6 +21,11 @@ lazy val root = (project in file(".")).
     )
 
 routesGenerator := InjectedRoutesGenerator
+
+// Docker 配置
+import NativePackagerHelper.directory
+mappings in Universal ++= directory("pharbers_config_deploy")
+    .map(x => x._1 -> x._2.replace("pharbers_config_deploy", "pharbers_config"))
 
 resolvers += Resolver.sonatypeRepo("releases")
 resolvers += Resolver.sonatypeRepo("snapshots")
@@ -67,12 +72,22 @@ libraryDependencies ++= Seq(
     "com.pharbers" % "pharbers-redis" % "0.1",
     "com.pharbers" % "pharbers-pattern" % "0.1",
     "com.pharbers" % "pharbers-paction" % "0.1",
-    "com.pharbers" % "pharbers-max" % "0.1" exclude("com.fasterxml.jackson.core", "jackson-databind"),
-    "com.pharbers" % "pharbers-spark" % "0.1" exclude("com.fasterxml.jackson.core", "jackson-databind"),
+    "com.pharbers" % "pharbers-max" % "0.1",
+    "com.pharbers" % "pharbers-spark" % "0.1",
 
+    //spark依赖
+    "org.apache.spark" % "spark-core_2.11" % "2.3.0",
+    "org.apache.spark" % "spark-sql_2.11" % "2.3.0",
+    "org.apache.spark" % "spark-yarn_2.11" % "2.3.0",
+
+    //hadoop依赖
+    "org.apache.hadoop" % "hadoop-client" % "3.0.3",
 
     //    其他依赖(日志, 测试)
     "log4j"             % "log4j"               % "1.2.17",
     "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test,
     "org.specs2"        % "specs2_2.11"         % "3.7" % Test
 )
+//解决jackson incompatible 问题
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-core" % "2.6.0"
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.0"

@@ -3,6 +3,7 @@ package controllers
 import play.api.mvc._
 import io.circe.syntax._
 import akka.actor.ActorSystem
+import bricks.export.ExportMaxResult
 import bricks.resultcheck.ResultCheck
 import bricks.samplecheck.{SampleCheckBody, SampleCheckSelecter}
 import play.api.libs.circe.Circe
@@ -21,6 +22,7 @@ class PhJsonApiController @Inject()(implicit val cc: ControllerComponents, impli
                 case ("samplecheckselecter", 0) => PlayEntry().excution(SampleCheckSelecter()).asJson
                 case ("samplecheckbody", 0) => PlayEntry().excution(SampleCheckBody()).asJson
                 case ("resultcheck", 0) => PlayEntry().excution(ResultCheck()).asJson
+                case ("exportmaxresult", 0) => PlayEntry().excution(ExportMaxResult()).asJson
                 case (_, _) => throw new Exception("Bad Request for input")
             }
         )
