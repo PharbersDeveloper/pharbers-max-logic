@@ -3,9 +3,8 @@ package controllers
 import play.api.mvc._
 import io.circe.syntax._
 import akka.actor.ActorSystem
-import bricks.export.ExportMaxResult
-import bricks.resultcheck.ResultCheck
-import bricks.samplecheck.{SampleCheckBody, SampleCheckSelecter}
+import bricks.resultcheck.ResultCheckBrick
+import bricks.samplecheck.{SampleCheckBodyBrick, SampleCheckSelecterBrick}
 import play.api.libs.circe.Circe
 import javax.inject.{Inject, Singleton}
 import com.pharbers.pattern.frame.PlayEntry
@@ -19,10 +18,9 @@ class PhJsonApiController @Inject()(implicit val cc: ControllerComponents, impli
     def routes(pkg: String, step: Int): Action[RootObject] = Action(circe.json[RootObject]) { implicit request =>
         Ok(
             (pkg, step) match {
-                case ("samplecheckselecter", 0) => PlayEntry().excution(SampleCheckSelecter()).asJson
-                case ("samplecheckbody", 0) => PlayEntry().excution(SampleCheckBody()).asJson
-                case ("resultcheck", 0) => PlayEntry().excution(ResultCheck()).asJson
-                case ("exportmaxresult", 0) => PlayEntry().excution(ExportMaxResult()).asJson
+                case ("samplecheckselecter", 0) => PlayEntry().excution(SampleCheckSelecterBrick()).asJson
+                case ("samplecheckbody", 0) => PlayEntry().excution(SampleCheckBodyBrick()).asJson
+                case ("resultcheck", 0) => PlayEntry().excution(ResultCheckBrick()).asJson
                 case (_, _) => throw new Exception("Bad Request for input")
             }
         )

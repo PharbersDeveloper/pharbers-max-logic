@@ -6,7 +6,7 @@ import com.pharbers.jsonapi.model
 import com.pharbers.macros._
 import com.pharbers.macros.convert.jsonapi.JsonapiMacro._
 import com.pharbers.pattern.frame._
-import module.samplecheck.{samplecheckbody, samplecheckselecter}
+import module.samplecheck.{SampleCheckBody, SampleCheckSelecter}
 import play.api.mvc.Request
 
 /**
@@ -15,14 +15,14 @@ import play.api.mvc.Request
   * @ date 18-9-26
   * @ Description: TODO
   */
-case class SampleCheckBody()(implicit val rq: Request[model.RootObject])
+case class SampleCheckBodyBrick()(implicit val rq: Request[model.RootObject])
     extends Brick with CirceJsonapiSupport {
 
     override val brick_name: String = "get sample check selecter data"
 
-    var scb_data: samplecheckbody = new samplecheckbody()
+    var scb_data: SampleCheckBody = new SampleCheckBody()
 
-    override def prepare: Unit = scb_data = formJsonapi[samplecheckbody](rq.body)
+    override def prepare: Unit = scb_data = formJsonapi[SampleCheckBody](rq.body)
 
     override def exec: Unit = {
         val ssc = new ShowSampleCheck

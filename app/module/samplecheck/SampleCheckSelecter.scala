@@ -11,16 +11,9 @@ import com.pharbers.macros.common.connecting.ToStringMacro
   */
 
 @ToStringMacro
-class samplecheckbody extends commonEntity {
-    type phase = Map[String, Any]
-
+class SampleCheckSelecter extends commonEntity {
     var job_id: String = ""
-    var user_id: String = ""
     var company_id: String = ""
-    var ym: String = ""
-    var market: String = ""
-    var hospital: phase = Map.empty
-    var product: phase = Map.empty
-    var sales: phase = Map.empty
-    var notfindhospital: List[phase] = Nil
+    var ym_list: List[String] = Nil
+    var mkt_list: List[String] = Nil
 }

@@ -10,7 +10,7 @@ import com.pharbers.macros.common.connecting.ToStringMacro
   * @ Description: TODO
   */
 @ToStringMacro
-class resultcheck extends commonEntity {
+class ResultCheck extends commonEntity {
     type phase = Map[String, Any]
 
     var job_id: String = ""
