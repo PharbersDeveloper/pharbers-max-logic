@@ -18,7 +18,7 @@ class PhJsonApiController @Inject()(implicit val cc: ControllerComponents, impli
     def routes(pkg: String, step: Int): Action[RootObject] = Action(circe.json[RootObject]) { implicit request =>
         Ok(
             (pkg, step) match {
-                case ("samplecheckselecter", 0) => PlayEntry().excution(SampleCheckSelecterBrick()).asJson
+//                case ("samplecheckselecter", 0) => PlayEntry().excution(SampleCheckSelecterBrick()).asJson
                 case ("samplecheckbody", 0) => PlayEntry().excution(SampleCheckBodyBrick()).asJson
                 case ("resultcheck", 0) => PlayEntry().excution(ResultCheckBrick()).asJson
                 case (_, _) => throw new Exception("Bad Request for input")
